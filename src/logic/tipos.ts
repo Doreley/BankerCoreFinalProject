@@ -7,7 +7,7 @@ export type Sistema = {
   m: number; // número de tipos de recurso
   available: Vector; // recursos libres
   max: Matriz; // demanda máxima de cada proceso
-  allocation: Matriz; 
+  allocation: Matriz; //recursos ya ocupados 
 };
 
 export type ErrorValidacion = {
@@ -19,15 +19,14 @@ export type ErrorValidacion = {
 
 export type PasoSeguridad = {
   iteracion: number; // número de iteración
-  proceso: number; // proceso evaluado (0 = P0, 1 = P1, ...)
+  proceso: number; // proceso evaluado 
   need: Vector; // Need del proceso
   workAntes: Vector; // Work en el momento de evaluarlo
   puedeTerminar: boolean; // ¿Need <= Work?
-  workDespues: Vector; // Work después (igual a workAntes si no pudo terminar)
+  workDespues: Vector; // Work después 
   finish: boolean[]; // cómo quedó el vector Finish después de este paso
 };
 
-/** Resultado completo del algoritmo de seguridad. */
 export type ResultadoSeguridad = {
   seguro: boolean; // true = estado seguro
   secuencia: number[]; // orden en que terminaron los procesos
@@ -43,16 +42,28 @@ export type ResultadoSolicitud = {
   seguridad: ResultadoSeguridad | null; // algoritmo de seguridad sobre ese estado
 };
 
-/** Lo que le falta a un proceso bloqueado para poder terminar. */
 export type Faltante = {
   proceso: number;
   need: Vector; // lo que necesita
   falta: Vector; // cuánto le falta de cada recurso
 };
 
-/** Diagnóstico de un estado inseguro. */
 export type Diagnostico = {
   faltantes: Faltante[]; // un elemento por cada proceso bloqueado
   recursosExtra: Vector; // cuánto habría que agregar a Available
   secuenciaConExtra: number[]; // secuencia segura si se agregaran esos recursos
+};
+
+//Todo lo que se calcula al presionar "Analizar sistema"
+export type Analisis = {
+  seguridad: ResultadoSeguridad;
+  secuencias: number[][]; // todas las secuencias seguras
+  diagnostico: Diagnostico | null; // solo si el estado es inseguro
+};
+
+//quién pidió, qué pidió y qué respondió el algoritmo
+export type SolicitudEvaluada = {
+  proceso: number;
+  request: Vector;
+  resultado: ResultadoSolicitud;
 };

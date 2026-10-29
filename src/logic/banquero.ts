@@ -43,17 +43,17 @@ export function sumarVectores(a: Vector, b: Vector): Vector {
   return resultado;
 }
 
-/** Nombre del recurso según su posición: 0 → "A", 1 → "B", 2 → "C"... */
+//Nombre del recurso según su posición
 export function nombreRecurso(j: number): string {
   return String.fromCharCode(65 + j);
 }
 
-/** Revisa que un valor sea un número entero mayor o igual a 0. */
+//Revisa que un valor sea un número entero mayor o igual a 0
 function esEnteroValido(valor: number): boolean {
   return Number.isInteger(valor) && valor >= 0;
 }
 
-/** Explica por qué un valor no es válido. */
+//Explica por qué un valor no es válido. 
 function describirProblema(valor: number): string {
   if (Number.isNaN(valor)) return "está vacío";
   if (valor < 0) return "es negativo";
@@ -134,7 +134,7 @@ export function algoritmoSeguridad(sistema: Sistema): ResultadoSeguridad {
   while (encontrado && secuencia.length < sistema.n) {
     encontrado = false;
 
-    // ---- Paso 2: buscar un proceso que pueda terminar, empezando en P0 ----
+    // ---- Paso 2: buscar un proceso que pueda terminar, empezando en P0 
     for (let i = 0; i < sistema.n; i++) {
       if (finish[i]) {
         continue; // este proceso ya terminó, pasamos al siguiente
@@ -143,7 +143,7 @@ export function algoritmoSeguridad(sistema: Sistema): ResultadoSeguridad {
       const workAntes = work;
       const puedeTerminar = esMenorOIgual(need[i], work);
 
-      // ---- Paso 3: el proceso termina y devuelve lo que tenía ----
+      // ---- Paso 3: el proceso termina y devuelve lo que tenía 
       if (puedeTerminar) {
         work = sumarVectores(work, sistema.allocation[i]);
         finish[i] = true;
@@ -187,7 +187,7 @@ export function algoritmoSeguridad(sistema: Sistema): ResultadoSeguridad {
   };
 }
 
-/** Resta dos vectores posición por posición: a - b. */
+// Resta dos vectores posición por posición
 export function restarVectores(a: Vector, b: Vector): Vector {
   const resultado: Vector = [];
   for (let j = 0; j < a.length; j++) {
@@ -380,7 +380,7 @@ export function diagnosticar(sistema: Sistema): Diagnostico {
   };
 }
 
-/** Cuánto le falta a un proceso: Need - Work, sin negativos (si sobra, falta 0). */
+// Cuánto le falta a un proceso
 function calcularFaltante(need: Vector, work: Vector): Vector {
   const falta: Vector = [];
   for (let j = 0; j < need.length; j++) {

@@ -11,7 +11,7 @@ import {
   validarDatos,
 } from "./banquero";
 
-// Ejemplo del libro de Silberschatz
+// Ejemplo
 const ejemplo: Sistema = {
   n: 5,
   m: 3,
@@ -45,10 +45,10 @@ console.log("Work [3,3,2] + Allocation P1 [2,0,0] =", sumarVectores([3, 3, 2], [
 
 console.log("Prueba 4: validarDatos");
 
-// a) El ejemplo del libro no tiene errores
+// a) El ejemplo no tiene errores
 console.log("Ejemplo correcto:", validarDatos(ejemplo)); // []
 
-// b) Un ejemplo con errores a propósito
+// b) Un ejemplo con errores 
 const conErrores: Sistema = {
   n: 2,
   m: 2,
